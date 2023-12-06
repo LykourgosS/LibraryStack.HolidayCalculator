@@ -2,7 +2,19 @@
 {
     public static class GreekPublicHolidays
     {
-        public static DateTime GetOrthodoxEaster(int year)
+        private GreekPublicHolidays() { }
+
+        private static class GreekPublicHolidaysHolder
+        {
+            public static readonly GreekPublicHolidays greekPublicHolidays = new();
+        }
+
+        public static GreekPublicHolidays GetInstance()
+        {
+            return GreekPublicHolidaysHolder.greekPublicHolidays;
+        }
+
+        public DateTime GetOrthodoxEaster(int year)
         {
             var a = year % 19;
             var b = year % 7;
