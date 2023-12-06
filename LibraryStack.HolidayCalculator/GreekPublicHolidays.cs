@@ -67,7 +67,7 @@
                 yearFrom++;
             }
 
-            return holidays;
+            return holidays.Where(x => x >= from && x <= to).ToList();
         }
 
         public bool IsHoliday(DateTime date)
