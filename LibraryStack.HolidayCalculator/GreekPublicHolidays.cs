@@ -1,6 +1,6 @@
 ﻿namespace LibraryStack.HolidayCalculator
 {
-    public static class GreekPublicHolidays
+    public class GreekPublicHolidays : IPublicHolidays
     {
         private GreekPublicHolidays() { }
 
@@ -31,7 +31,7 @@
             return new DateTime(year, month, day);
         }
 
-        public static List<DateTime> GetHolidays(int year)
+        public List<DateTime> GetHolidays(int year)
         {
             var easter = GetOrthodoxEaster(year);
             var holidays = new List<DateTime>
@@ -70,17 +70,17 @@
             return holidays;
         }
 
-        public static bool IsHoliday(DateTime date)
+        public bool IsHoliday(DateTime date)
         {
             return GetHolidays(date.Year).Contains(date);
         }
 
-        public static bool IsWeekend(DateTime date)
+        public bool IsWeekend(DateTime date)
         {
             return date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday;
         }
 
-        public static bool IsWorkDay(DateTime date)
+        public bool IsWorkDay(DateTime date)
         {
             return !(IsHoliday(date) || IsWeekend(date));
         }
