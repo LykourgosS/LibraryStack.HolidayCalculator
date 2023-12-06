@@ -55,6 +55,21 @@
             return holidays;
         }
 
+        public List<DateTime> GetHolidays(DateTime from, DateTime to)
+        {
+            var holidays = new List<DateTime>();
+
+            var yearFrom = from.Year;
+            var yearTo = to.Year;
+            while(yearFrom <= yearTo)
+            {
+                holidays.AddRange(GetHolidays(yearTo));
+                yearFrom++;
+            }
+
+            return holidays;
+        }
+
         public static bool IsHoliday(DateTime date)
         {
             return GetHolidays(date.Year).Contains(date);
